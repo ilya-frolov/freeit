@@ -1,6 +1,6 @@
 package com.ilyafrolov.lesson2;
 
-public class HWTask2 {
+public class HomeWorkTask2_Comparison {
     public static void main (String args []) {
 
     /*

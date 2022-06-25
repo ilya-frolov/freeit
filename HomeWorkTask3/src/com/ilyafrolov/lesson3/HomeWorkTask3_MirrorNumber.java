@@ -3,7 +3,7 @@ package com.ilyafrolov.lesson3;
 import java.util.Scanner;
 import java.util.Random;
 
-public class HomeWorkTask4_MirrorNumber {
+public class HomeWorkTask3_MirrorNumber {
     public static void main(String args[]) {
 
         /*

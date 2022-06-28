@@ -14,9 +14,6 @@ public class HomeWorkTask4_Factorial {
         Random rand = new Random();
         int x = rand.nextInt(19) + 1;
 
-//        if (x <= 0) {
-//            x = x * (-1);
-//        }
         System.out.println("The random given number: " + x);
 
         int n = 1;

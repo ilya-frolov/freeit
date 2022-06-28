@@ -25,6 +25,5 @@ public class HomeWorkTask4_Factorial {
         }
 
         System.out.println("\nFactorial of " + x + " = " + factorial + ".");
-cd d:\
     }
 }

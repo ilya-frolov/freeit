@@ -7,6 +7,7 @@ public class HomeWorkTask4_CloseRectHoleRoundCover {
     public static void main(String[] args) {
 
         /*
+        Задание 7.
         Имеется прямоугольное отверстие размерами a и b.
         Определить, можно ли его полностью закрыть круглой картонкой радиусом r.
          */

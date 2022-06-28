@@ -1,4 +1,4 @@
-package com.ilyafrolov.lesson4.com.ilyafrolov.lesson4;
+package com.ilyafrolov.lesson4;
 
 import java.util.Random;
 import java.lang.Math;

@@ -6,9 +6,10 @@ public class HomeWorkTask4_PadejRubles {
     public static void main(String[] args) {
 
         /*
-        Имеется целове число (задать с помощью Random rand = new Random(); int x =
+        Задание 8.
+        Имеется целое число (задать с помощью Random rand = new Random(); int x =
         rand.nextInt()).
-        Это число – количесво денег в рублях. Вывести это число,
+        Это число – количество денег в рублях. Вывести это число,
         добавив к нему слово «рублей» в правильном падеже.
          */
 

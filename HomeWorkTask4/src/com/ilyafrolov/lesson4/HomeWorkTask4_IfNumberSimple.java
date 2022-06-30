@@ -20,16 +20,16 @@ public class HomeWorkTask4_IfNumberSimple {
             System.out.println("\nThe given number is simple.");
         }
 
-        //assigning array of numbers for dividing the given number by them
-        int[] numArray = new int[num + 1];
-
         boolean isSimple = true;
 
-        for (int i = 2; i < numArray.length - 1; i++) {
-            numArray[i] = i;
-            if (num % numArray[i] == 0) {
+        int i = 2;
+
+        while (i != num - 1) {
+            if (num % i == 0) {
                 isSimple = false;
                 break;
+            } else {
+                i++;
             }
         }
 

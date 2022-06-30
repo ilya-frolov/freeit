@@ -25,7 +25,7 @@ public class HomeWorkTask4_SumNumbersDividedThree {
         while (k != n) {
             if (j % 3 == 0) {
                 sum += j;
-                j++;
+                j += 3;
                 k++;
             } else {
                 j++;

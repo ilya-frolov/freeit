@@ -32,7 +32,7 @@ public class HomeWorkTask4_IfNumberSimple {
                 break;
             }
         }
-dsf
+
         if (isSimple) {
             System.out.println("\nThe given number is simple.");
         } else {

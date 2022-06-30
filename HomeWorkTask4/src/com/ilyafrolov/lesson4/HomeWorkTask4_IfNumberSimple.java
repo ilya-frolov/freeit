@@ -11,15 +11,34 @@ public class HomeWorkTask4_IfNumberSimple {
         делится без остатка только на 1 и себя.
          */
 
+        //assigning the number which would be checked if it is simple
         Random rand = new Random();
-        int num = rand.nextInt(200);
+        int num = rand.nextInt(1000);
         System.out.println("The random given number is: " + num + ".");
 
-        if (num != 2 && num !=3 && num % 2 == 0 || num % 3 == 0 || num % 5 == 0 || num % 7 == 0 || num % 11 == 0 || num % 13 == 0){
-            System.out.println("\nThe given number is NOT simple.");
-        } else {
+        if (num == 2) {
             System.out.println("\nThe given number is simple.");
         }
-    System.out.println("\nThe program is completed successfully.");
+
+        //assigning array of numbers for dividing the given number by them
+        int[] numArray = new int[num + 1];
+
+        boolean isSimple = true;
+
+        for (int i = 2; i < numArray.length - 1; i++) {
+            numArray[i] = i;
+            if (num % numArray[i] == 0) {
+                isSimple = false;
+                break;
+            }
+        }
+
+        if (isSimple) {
+            System.out.println("\nThe given number is simple.");
+        } else {
+            System.out.println("\nThe given number is NOT simple.");
+        }
+
+        System.out.println("\nThe program is completed successfully.");
     }
 }

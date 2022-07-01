@@ -20,25 +20,30 @@ public class HomeWorkTask3_MirrorNumber {
         First solution - without using arrays.
          */
 
+        //Step 1: input a four-digit number
         Scanner input = new Scanner(System.in);
         System.out.println("Enter a four-digit natural number, please:");
-        int n = input.nextInt(); //given number
+        int n = input.nextInt();
 
 
-        //verification if the number is a natural and a four-digit one
+        //Step 2: verification if the number is a natural and a four-digit one
         while (n < 1000 || n > 9999) {
             Scanner input2 = new Scanner(System.in);
             System.out.println("Enter a four-digit positive number, please:");
             n = input2.nextInt();
         }
 
+        //Step 3: obtaining separate digits of the given number
         int n1 = n / 1000;// the first digit of the given number
-        int n2 = (n - n1 * 1000) / 100;// the second digit of the given number
-        int n3 = (n - n1 * 1000 - n2 * 100) / 10;// the third digit of the given number
-        int n4 = n - n1 * 1000 - n2 * 100 - n3 * 10;// the fourth digit of the given number
+        int var1 = n - n1 * 1000;
+        int n2 = var1 / 100;// the second digit of the given number
+        int var2= n2 * 100;
+        int n3 = (var1 - var2) / 10;// the third digit of the given number
+        int n4 = var1 - var2 - n3 * 10;// the fourth digit of the given number
 
+        int mirNum = n4 * 1000 + n3 * 100 + n2 * 10 + n1;
         System.out.println("A mirrored number according to the first solution approach:");
-        System.out.println(n4 + "" + n3 + "" + n2 + "" + n1);// the mirrored number
+        System.out.println("" + mirNum);
 
 
         /*
@@ -58,7 +63,7 @@ public class HomeWorkTask3_MirrorNumber {
         String s = String.valueOf(number);
 
         int[] number2 = new int[4];// creation of second new int array with four cells
-        System.out.print("\nA mirrored number according to the second solution approach:");
+        System.out.print("\n\nA mirrored number according to the second solution approach:");
 
         number2[0] = number[3];
         number2[1] = number[2];

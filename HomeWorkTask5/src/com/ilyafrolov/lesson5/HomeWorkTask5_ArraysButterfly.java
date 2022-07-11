@@ -1,7 +1,5 @@
 package com.ilyafrolov.lesson5;
 
-import java.util.Random;
-
 public class HomeWorkTask5_ArraysButterfly {
     public static void main(String[] args) {
 

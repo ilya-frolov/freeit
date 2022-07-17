@@ -39,26 +39,19 @@ public class HomeWorkTask6_FrequencyVocabularySentences {
             index2 = bi.current();
             sentences[k] = sentence;
             System.out.println("" + sentences[k]);
-            k++; //number of sentences
+            k++;
         }
 
         //Step 3: Splitting each sentence into separate words and combining them to 2D array
-        //???Why not do I need 2D array? Because each sentence consists of number of words,
-        // which means a separate array for each sentence since each word I put in different cell.
-        //So I need to order this 1D arrays with words into one outside array.
         String[][] words = new String[k][];
         for (int i = 0; i < words.length; i++) {
-            words[i] = new String[sentences[i].split("\\W+").length];//assigning the size of each inside array -
-            // number of words in each sentence
-            // It is necessarily to assign value of each cell of outside array,
-            // otherwise it will be filled with nulls since these cells include only links to inside arrays.
-            // And it is possible to assign only by this type of code = new int[].
+            words[i] = new String[sentences[i].split("\\W+").length];
             for(int j = 0; j < words[i].length; j++) {
                 words[i][j] = sentences[i].split("\\W+")[j];
             }
         }
 
-        //Step 4: Creating an array for counting number of words repeating
+        //Step 4: Creating an array for counting number of word repeating
         int[][] numberOfRepeats = new int[k][];
         for (int i = 0; i < words.length; i++) {
             numberOfRepeats[i] = new int[words[i].length];

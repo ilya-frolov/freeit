@@ -43,33 +43,37 @@ public class ATM {
 
     public boolean withdrawMoneyFromATM(int sum) {
         totalSum = num20 * 20 + num50 * 50 + num100 * 100;
-        if (sum <= totalSum) {
-            System.out.println("The required amount of money is accepted.");
-            while (exitSum % sum != 0 || exitSum == 0) {
-                exitSum = 0;
-                numExit20 = 0;
-                numExit50 = 0;
-                numExit100 = 0;
-                Random rand1 = new Random();
-                numExit100 = rand1.nextInt(sum / 100);
-                exitSum = numExit20 * 20 + numExit50 * 50 + numExit100 * 100;
-                if (exitSum != sum) {
-                    Random rand2 = new Random();
-                    numExit50 = rand2.nextInt((sum - exitSum) / 50);
+        if (sum % 20 == 0) {
+            if (sum <= totalSum) {
+                System.out.println("The required amount of money is accepted.");
+                while (exitSum % sum != 0 || exitSum == 0) {
+                    exitSum = 0;
+                    numExit20 = 0;
+                    numExit50 = 0;
+                    numExit100 = 0;
+                    Random rand1 = new Random();
+                    numExit100 = rand1.nextInt(sum / 100);
+                    exitSum = numExit20 * 20 + numExit50 * 50 + numExit100 * 100;
+                    if (exitSum != sum) {
+                        Random rand2 = new Random();
+                        numExit50 = rand2.nextInt((sum - exitSum) / 50);
+                    }
+                    exitSum = numExit20 * 20 + numExit50 * 50 + numExit100 * 100;
+                    if (exitSum != sum) {
+                        numExit20 = (sum - numExit100 * 100 - numExit50 * 50) / 20;
+                    }
+                    exitSum = numExit20 * 20 + numExit50 * 50 + numExit100 * 100;
                 }
-                exitSum = numExit20 * 20 + numExit50 * 50 + numExit100 * 100;
-                if (exitSum != sum) {
-                    numExit20 = (sum - numExit100 * 100 - numExit50 * 50) / 20;
-                }
-                exitSum = numExit20 * 20 + numExit50 * 50 + numExit100 * 100;
+                System.out.println("The number of 20 bills is: " + numExit20 + "; of 50 bills is: "
+                        + numExit50 + "; of 100 bills is: " + numExit100 + ".");
+                return true;
+            } else {
+                System.out.println("The required amount of money is not accepted.");
+                System.out.println("The maximum possible sum for withdrawing is: " + totalSum + ".");
+                return false;
             }
-            System.out.println("The number of 20 bills is: " + numExit20 + "; of 50 bills is: "
-                    + numExit50 + "; of 100 bills is: " + numExit100 + ".");
-            return true;
-        } else {
-            System.out.println("The required amount of money is not accepted.");
-            System.out.println("The maximum possible sum for withdrawing is: " + totalSum + ".");
-            return false;
         }
+        System.out.println("The sum is cannot be withdrawed");
+        return false;
     }
 }

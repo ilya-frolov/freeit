@@ -78,7 +78,7 @@ public class ATM {
                 return false;
             }
         }
-        System.out.println("\nThe sum is cannot be withdrawn.");
+        System.out.println("\nThe sum cannot be withdrawn.");
         return false;
     }
 }

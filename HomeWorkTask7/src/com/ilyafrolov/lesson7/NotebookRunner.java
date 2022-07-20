@@ -47,6 +47,8 @@ public class NotebookRunner {
 
         notebook.sortByDate();
         System.out.println(notebook);
+
+        notebook.findWord("food");
     }
 
 }

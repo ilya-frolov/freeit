@@ -2,18 +2,20 @@ package com.ilyafrolov.lesson7;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Notebook {
 
     /*
     - Создать класс записной книжки, в котором хранятся записи дел.
-    - Создать в этом классе метод, который выводит частотный словарь
-      для определенной записи (запись можно определить по номеру/индексу).
-    - Отсортировать записи, хранящиеся в записной книжке
-      по времени их добавления и вывести в этом порядке в консоль.
-    - Написать в классе записной книжки метод, который выводит в консоль
-      название всех дел/сами дела, в которых есть переданное в этот метод
-      в качестве аргумента слово
+    1. Создать в этом классе метод, который выводит частотный словарь
+       для определенной записи (запись можно определить по номеру/индексу).
+    2. Отсортировать записи, хранящиеся в записной книжке
+       по времени их добавления и вывести в этом порядке в консоль.
+    3. Написать в классе записной книжки метод, который выводит в консоль
+       название всех дел/сами дела, в которых есть переданное в этот метод
+       в качестве аргумента слово
      */
 
     public String[] tasks;
@@ -28,7 +30,7 @@ public class Notebook {
     public String toString() {
         System.out.println("Existing tasks: ");
         for (int i = 0; i < tasks.length; i++) {
-            System.out.println("" + i + ". " + tasks[i] + "  " + curDate[i]);
+            System.out.println("" + (i + 1) + ". " + tasks[i] + "  " + curDate[i]);
         }
         return "";
     }
@@ -49,6 +51,7 @@ public class Notebook {
         }
     }
 
+    //1
     public void freqVocab(int indexOfTask) {
         //Step 1: Creation of array with words form a task a counting their number
         int counter2 = 0;
@@ -87,6 +90,7 @@ public class Notebook {
         curDate[numberOfTask - 1] = Calendar.getInstance().getTime();
     }
 
+    //2.
     public void sortByDate() {
         for (int i = 0; i < curDate.length - 1; i++) {
             int last = i;
@@ -103,4 +107,17 @@ public class Notebook {
             curDate[last] = tempor2;
         }
     }
+
+    //3.
+    public void findWord(String keyWord) {
+        Pattern pattern = Pattern.compile(".*" + keyWord + ".*");
+        System.out.println("The word is found in the task(s): ");
+        for (int i = 0; i < tasks.length; i++) {
+            Matcher matcher = pattern.matcher(tasks[i]);
+            if (matcher.matches()) {
+                System.out.println("" + (i + 1) + ". " + tasks[i]);
+            }
+        }
+    }
 }
+

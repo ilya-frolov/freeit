@@ -39,7 +39,7 @@ public class Notebook {
         for (int i = 0; i < tasks.length; i++) {
             if (tasks[i] == null) {
                 tasks[i] = newTask;
-                curDate[i] = Calendar.getInstance().getTime();
+                curDate[i] = new Date();
                 counter++;
                 break;
             } else {
@@ -87,7 +87,7 @@ public class Notebook {
     //The next method is only for changing the date of new rewrited tasks
     public void reWriteTask(int numberOfTask, String newTask) {
         tasks[numberOfTask - 1] = newTask;
-        curDate[numberOfTask - 1] = Calendar.getInstance().getTime();
+        curDate[numberOfTask - 1] = new Date();
     }
 
     //2.

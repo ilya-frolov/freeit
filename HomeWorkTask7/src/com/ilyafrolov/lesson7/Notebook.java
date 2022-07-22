@@ -95,6 +95,7 @@ public class Notebook {
         for (int i = 0; i < curDate.length - 1; i++) {
             int last = i;
             for (int j = i + 1; j < curDate.length; j++) {
+
                 if (curDate[last].after(curDate[j])) {
                     last = j;
                 }

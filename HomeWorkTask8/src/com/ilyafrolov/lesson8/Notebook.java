@@ -1,7 +1,7 @@
 package com.ilyafrolov.lesson8;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,22 +20,23 @@ public class Notebook {
     private String[] entries; //2.changed public modifier to private for avoiding changes outside
     public int counter;
     public Date[] curDate;
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyy HH:mm:ss");
     public String[] types;
-    //4.
-    public Date dateFrom;
-    public Date dateTo;
 
     public Notebook(int numberOfEntries) {
         entries = new String[numberOfEntries];
-//        curDate = new Date[entries.length];
+        curDate = new Date[entries.length];
         types = new String[entries.length];
     }
 
     public String toString() {
         System.out.println("Existing entries: ");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         for (int i = 0; i < entries.length; i++) {
-            System.out.println("" + (i + 1) + ". " + entries[i] + "  " + dateFormat.format(curDate[i]) + " Type: " + types[i]);
+            if (entries[i] != null) {
+                System.out.println("" + (i + 1) + ". " + entries[i] + "  " + dateFormat.format(curDate[i]) + " Type: " + types[i]);
+            } else {
+                System.out.println("" + (i + 1) + ". " + entries[i] + "  " + " Type: " + types[i]);
+            }
         }
         return "";
     }
@@ -153,13 +154,16 @@ public class Notebook {
     }
 
     //4.
-    public void getEntriesInTimeInterval(Date dateFrom, Date dateTo) {
-        long dateFromMillis = dateFrom.getTime();
-        long dateToMillis = dateTo.getTime();
-        System.out.println("The entries in the time interval between " + dateFrom +
-                " and " + dateTo + ":");
+    public void getEntriesInTimeInterval(String dateFromDD, String dateFromMM,String dateFromYYYY, String dateToDD, String dateToMM,String dateToYYYY) throws ParseException {
+        String dateFromStr = "" + dateFromDD + "." + dateFromMM + "." + dateFromYYYY;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        Date dateFrom = dateFormat.parse(dateFromStr);
+        String dateToStr = "" + dateToDD + "." + dateToMM + "." + dateToYYYY;
+        Date dateTo = dateFormat.parse(dateToStr);
+        System.out.println("The entries in the time interval between " + dateFormat.format(dateFrom) +
+                " and " + dateFormat.format(dateTo) + ":");
         for (int i = 0; i < curDate.length; i++) {
-            if (curDate[i].after(dateFromMillis) && curDate[i].before(dateToMillis)) {
+            if (curDate[i].after(dateFrom) && curDate[i].before(dateTo)) {
                 System.out.println("" + (i + 1) + ". " + entries[i]);
             }
         }

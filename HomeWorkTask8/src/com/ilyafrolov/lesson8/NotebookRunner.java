@@ -1,10 +1,11 @@
 package com.ilyafrolov.lesson8;
 
-import static com.ilyafrolov.lesson8.Notebook.*;
+import java.text.ParseException;
+
 import static com.ilyafrolov.lesson8.Notebook.Tasks.*;
 
 public class NotebookRunner {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
         Notebook notebook = new Notebook(5);
         System.out.println(notebook);
 
@@ -35,6 +36,6 @@ public class NotebookRunner {
 
         notebook.findTask(CALLS);
 
-        notebook.getEntriesInTimeInterval(22.07.2022 18:17:18);
+        notebook.getEntriesInTimeInterval("23", "07", "2022", "25", "07", "2022");
     }
 }

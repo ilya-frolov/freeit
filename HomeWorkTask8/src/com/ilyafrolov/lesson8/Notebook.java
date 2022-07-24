@@ -154,13 +154,13 @@ public class Notebook {
     }
 
     //4.
-    public void getEntriesInTimeInterval(String dateFromDD, String dateFromMM,String dateFromYYYY, String dateToDD, String dateToMM,String dateToYYYY) throws ParseException {
-        String dateFromStr = "" + dateFromDD + "." + dateFromMM + "." + dateFromYYYY;
+    public void getEntriesInTimeInterval(String dateFromDD, String dateFromMM, String dateFromYYYY, String dateToDD, String dateToMM, String dateToYYYY) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+        String dateFromStr = "" + dateFromDD + "." + dateFromMM + "." + dateFromYYYY;
         Date dateFrom = dateFormat.parse(dateFromStr);
         String dateToStr = "" + dateToDD + "." + dateToMM + "." + dateToYYYY;
         Date dateTo = dateFormat.parse(dateToStr);
-        System.out.println("The entries in the time interval between " + dateFormat.format(dateFrom) +
+        System.out.println("\nThe entries in the time interval between " + dateFormat.format(dateFrom) +
                 " and " + dateFormat.format(dateTo) + ":");
         for (int i = 0; i < curDate.length; i++) {
             if (curDate[i].after(dateFrom) && curDate[i].before(dateTo)) {
@@ -181,14 +181,6 @@ public class Notebook {
 
         Tasks(String abbrev) {
             this.abbrev = abbrev;
-        }
-
-        public static void getAbbrev() {
-            for (int i = 0; i < tasks.length; i++) {
-                tasks[i] = Tasks.values()[i].abbrev;
-                System.out.println("" + tasks[i]);
-            }
-//            Tasks[] tasks = Tasks.values();
         }
     }
 }

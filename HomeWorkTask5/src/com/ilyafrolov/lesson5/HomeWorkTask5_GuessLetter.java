@@ -8,7 +8,7 @@ public class HomeWorkTask5_GuessLetter {
 
        /*
         Написать игру в которой нужно угадать случайно выбранную букву (именно букву).
-        При каждом вводе пользователем программа долна говорить "warmly, hot" или
+        При каждом вводе пользователем программа должна говорить "warmly, hot" или
        "chilly, cold" в зависимости от того, как далеко буква пользователя от загаданной
      */
 
@@ -22,20 +22,20 @@ public class HomeWorkTask5_GuessLetter {
         Scanner input = new Scanner(System.in);
         System.out.println("Enter, please, the lowercase letter you guess: ");
         char in1 = input.next().charAt(0);
-        int n1 = (int) in1;
 
         //Step 3: Other guesses
         if (in1 != letter) {
             System.out.println("You are not correct.\nEnter, please, again " +
                     "the lowercase letter you guess: ");
             boolean guess = true;
+            int section1 = num - 97;
+            int section2 = 122 - num;
+
             while (guess) {
                 Scanner input2 = new Scanner(System.in);
                 char in2 = input2.next().charAt(0);
                 int n2 = (int) in2;
 
-                int section1 = num - 97;
-                int section2 = 122 - num;
                 if (in2 != letter) {
                     if (n2 < (97 + section1 / 4) || n2 > (122 - section2 / 4)) {
                         System.out.println("Cold! Try again.");
@@ -48,9 +48,8 @@ public class HomeWorkTask5_GuessLetter {
                     }
                 } else {
                     guess = false;
-                    System.out.println("You are right! The letter is: " + letter + ".");
+                    System.out.println("\nYou are right! The letter is: " + letter + ".");
                 }
-
             }
         } else {
             System.out.println("You are right! The letter is: " + letter + ".");

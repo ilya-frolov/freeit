@@ -44,10 +44,10 @@ public class HomeWorkTask5_ArraysMaxMinMark {
 
         for (int i = 0; i < marksArr.length; i++) {
             if (marksArr[i] == marksArr[max]) {
-                max2 = max2 + (i + 1) + " ";
+                max2 = max2 + i + " ";
             }
             if (marksArr[i] == marksArr[min]) {
-                min2 = min2 + (i + 1) + " ";
+                min2 = min2 + i + " ";
             }
         }
 

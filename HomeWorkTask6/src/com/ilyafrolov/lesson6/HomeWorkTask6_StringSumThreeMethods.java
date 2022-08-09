@@ -12,11 +12,10 @@ public class HomeWorkTask6_StringSumThreeMethods {
 
         int i = 0;
         String s1 = "Hey ho!";
-
+        String s2 = " Let's go!";
         long startTime1 = System.nanoTime();
-        while (i != 1000000000){
-            String s2 = " Let's go!";
-            String s3 = s1 + s2;
+        while (i != 100000){
+            s2 = s2 + s1;
             i++;
         }
         long endTime1 = System.nanoTime();
@@ -24,8 +23,8 @@ public class HomeWorkTask6_StringSumThreeMethods {
 
         i = 0;
         long startTime2 = System.nanoTime();
-        while (i != 1000000000) {
-            StringBuilder strBuilder = new StringBuilder(" Let's go!");
+        StringBuilder strBuilder = new StringBuilder(" Let's go!");
+        while (i != 100000) {
             strBuilder.append(s1);
             i++;
         }
@@ -34,8 +33,8 @@ public class HomeWorkTask6_StringSumThreeMethods {
 
         i = 0;
         long startTime3 = System.nanoTime();
-        while (i != 1000000000) {
-            StringBuffer strBuffer = new StringBuffer(" Let's go!");
+        StringBuffer strBuffer = new StringBuffer(" Let's go!");
+        while (i != 100000) {
             strBuffer.append(s1);
             i++;
         }

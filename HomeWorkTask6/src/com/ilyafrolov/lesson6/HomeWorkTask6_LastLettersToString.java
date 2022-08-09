@@ -20,7 +20,7 @@ public class HomeWorkTask6_LastLettersToString {
         String[] words = text.split("\\W+");
         System.out.println("Sentence made of last letters of each word:");
         for (int i = 0; i < words.length; i++) {
-            System.out.print("" + words[i].charAt(words[i].length() - 1));
+            System.out.print(words[i].charAt(words[i].length() - 1));
         }
         System.out.println("\n\nThe program is completed successfully.");
     }

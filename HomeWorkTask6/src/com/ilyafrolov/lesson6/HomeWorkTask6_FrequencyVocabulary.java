@@ -30,7 +30,7 @@ public class HomeWorkTask6_FrequencyVocabulary {
         int counter = 0;
         for (int i = 0; i < words.length; i++) {
             if (words[i] != null) {
-                for (int j = 0; j < words.length; j++) {
+                for (int j = i; j < words.length; j++) {
                     if (words[i].equals(words[j])) {
                         numberOfRepeats[i] += 1;
                     }
@@ -45,8 +45,7 @@ public class HomeWorkTask6_FrequencyVocabulary {
         //Step 2: Creation new arrays without repeating words
         String[] words2 = new String[words.length - counter];
         int[] numberOfRepeats2 = new int[words.length - counter];
-        int j = 0;
-        for (int i = 0; i < words.length; i++) {
+        for (int i = 0, j = 0; i < words.length; i++) {
             if (words[i] != null) {
                 words2[j] = words[i];
                 numberOfRepeats2[j] = numberOfRepeats[i];

@@ -18,31 +18,30 @@ public class TimeInterval {
     public int totalSeconds;
 
     public TimeInterval(int seconds) {
-        this.seconds = seconds;
+        hours = seconds / (60 * 60);
+        minutes = (seconds - hours * 60 * 60) / 60;
+        this.seconds = (seconds - hours * 60 * 60 - minutes * 60);
+        totalSeconds = seconds;
     }
 
     public TimeInterval(int hours, int minutes, int seconds) {
-        this.hours = hours;
-        this.minutes = minutes;
-        this.seconds = seconds;
+        totalSeconds = (seconds + minutes * 60 + hours * 60 * 60);
+        this.hours = totalSeconds / (60 * 60);
+        this.minutes = (totalSeconds - this.hours * 60 * 60) / 60;
+        this.seconds = (totalSeconds - this.hours * 60 * 60 - this.minutes * 60);
     }
 
     int calculateTotalSeconds() {
-        return totalSeconds = (seconds + minutes * 60 + hours * 24 * 60);
-    }
-
-    public void getTotalSeconds() {
-        totalSeconds = seconds + minutes * 60 + hours * 24 * 60;
-        System.out.println("Total number of seconds is: " + totalSeconds + " s");
+        return totalSeconds = (seconds + minutes * 60 + hours * 60 * 60);
     }
 
     public void compareToInterval(TimeInterval anotherInterval) {
-        int interval1 = seconds + minutes * 60 + hours * 24 * 60;
+        int interval1 = totalSeconds;
         int interval2 = anotherInterval.calculateTotalSeconds();
         System.out.println("The first interval is: " + interval1 + " s" +
                 "\nThe second interval is: " + interval2 + " s");
         if (interval1 == interval2) {
-            System.out.println("\nTime intervals are similar");
+            System.out.println("\nTime intervals are equal");
         }
         if (interval1 > interval2) {
             System.out.println("\nThe first time interval is longer");

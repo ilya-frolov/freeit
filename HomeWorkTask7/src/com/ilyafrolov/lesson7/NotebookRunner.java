@@ -9,24 +9,16 @@ public class NotebookRunner {
         System.out.println(notebook);
 
         notebook.addTask("Find job");
-        System.out.println(notebook);
-
         notebook.addTask("Buy food");
-        System.out.println(notebook);
-
         notebook.addTask("Buy food");
-        System.out.println(notebook);
-
         notebook.addTask("Find job");
-        System.out.println(notebook);
-
         notebook.addTask("Buy food, any food but something taste.");
         System.out.println(notebook);
 
         notebook.addTask("Find job");
         System.out.println(notebook);
 
-        notebook.freqVocab(4);
+//        notebook.freqVocab(4);
 
         try {
             Thread.sleep(3 * 1000);

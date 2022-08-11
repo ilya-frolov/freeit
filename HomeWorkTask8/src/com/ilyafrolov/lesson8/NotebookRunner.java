@@ -2,7 +2,7 @@ package com.ilyafrolov.lesson8;
 
 import java.text.ParseException;
 
-import static com.ilyafrolov.lesson8.Notebook.Tasks.*;
+import static com.ilyafrolov.lesson8.EntryType.*;
 
 public class NotebookRunner {
     public static void main(String[] args) throws ParseException {
@@ -36,6 +36,6 @@ public class NotebookRunner {
 
         notebook.findTask(CALLS);
 
-        notebook.getEntriesInTimeInterval("23", "07", "2022", "25", "07", "2022");
+        notebook.getEntriesInTimeInterval("11", "08", "2022", "12", "08", "2022");
     }
 }

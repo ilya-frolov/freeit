@@ -18,25 +18,24 @@ public class Notebook {
 
     //2.
     private Entry[] entries; //2.changed public modifier to private for avoiding changes outside
-    public int counter;
+    private int counter; //2.
 
     public Notebook(int numberOfEntries) {
         entries = new Entry[numberOfEntries];
     }
 
-    public String toString() {
+    public void printNotebook() {
         System.out.println("Existing entries: ");
         for (int i = 0; i < entries.length; i++) {
             System.out.println("" + (i + 1) + ". " + entries[i]);
         }
-        return "";
     }
 
     //1.
-    public void addEntry(String newEntry, EntryType entryType) {
+    public void addEntry(Entry entry) {
         for (int i = 0; i < entries.length; i++) {
             if (entries[i] == null) {
-                entries[i] = new Entry(newEntry, entryType);
+                entries[i] = entry;
                 counter++;
                 break;
             } else {
@@ -49,9 +48,13 @@ public class Notebook {
     }
 
     public void freqVocab(int indexOfEntry) {
+        if (indexOfEntry > entries.length - 1) {
+            System.out.println("Entered index is out of bounds. Please, choose another one.");
+            return;
+        }
         //Step 1: Creation of array with words from a task and counting their number
         int counter2 = 0;
-        String[] words = entries[indexOfEntry].getEntry().split("\\W+");
+        String[] words = entries[indexOfEntry].getEntryText().split("\\W+");
         int[] numberOfRepeats = new int[words.length];
         for (int i = 0; i < words.length; i++) {
             if (words[i] != null) {
@@ -80,8 +83,8 @@ public class Notebook {
     }
 
     //2.
-    private void reWriteEntry(int numberOfEntry, String newEntry, EntryType entryType) { //2.changed public modifier to private for avoiding changes outside
-        entries[numberOfEntry - 1] = new Entry(newEntry, entryType);
+    private void reWriteEntry(int numberOfEntry, Entry entry) { //2.changed public modifier to private for avoiding changes outside
+        entries[numberOfEntry - 1] = entry;
     }
 
     public void sortByDate() {
@@ -99,11 +102,11 @@ public class Notebook {
     }
 
     public void findWord(String keyWord) {
-        Pattern pattern = Pattern.compile(".*" + keyWord + ".*");
+        String regex = ".*" + keyWord + ".*";
         System.out.println("The word is found in the entry(s): ");
         for (int i = 0; i < entries.length; i++) {
-            Matcher matcher = pattern.matcher(entries[i].getEntry());
-            if (matcher.matches()) {
+            boolean matches = entries[i].getEntryText().matches(regex);
+            if (matches) {
                 System.out.println("" + (i + 1) + ". " + entries[i]);
             }
         }
@@ -121,11 +124,9 @@ public class Notebook {
     }
 
     //4.
-    public void getEntriesInTimeInterval(String dateFromDD, String dateFromMM, String dateFromYYYY, String dateToDD, String dateToMM, String dateToYYYY) throws ParseException {
+    public void getEntriesInTimeInterval(String dateFromStr, String dateToStr) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
-        String dateFromStr = "" + dateFromDD + "." + dateFromMM + "." + dateFromYYYY;
         Date dateFrom = dateFormat.parse(dateFromStr);
-        String dateToStr = "" + dateToDD + "." + dateToMM + "." + dateToYYYY;
         Date dateTo = dateFormat.parse(dateToStr);
         System.out.println("\nThe entries in the time interval between " + dateFormat.format(dateFrom) +
                 " and " + dateFormat.format(dateTo) + ":");

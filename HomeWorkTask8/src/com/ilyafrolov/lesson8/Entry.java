@@ -5,23 +5,23 @@ import java.text.SimpleDateFormat;
 
 public class Entry {
 
-    String entry;
-    Date curDate;
-    EntryType entryType;
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+    private String entryText; //2.changed public modifier to private for avoiding changes outside
+    private Date curDate; //2.
+    private EntryType entryType; //2.
 
-    public Entry(String newEntry, EntryType entryType) {
-        this.entry = newEntry;
+    public Entry(String newEntryText, EntryType newEntryType) {
+        this.entryText = newEntryText;
         curDate = new Date();
-        this.entryType = entryType;
+        this.entryType = newEntryType;
     }
 
     public String toString() {
-        return entry + ", [" + EntryType.getEntryTypeAbbrev(entryType) + "] (" + dateFormat.format(curDate) + ")";
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+        return entryText + ", [" + EntryType.getEntryTypeAbbrev(entryType) + "] (" + dateFormat.format(curDate) + ")";
     }
 
-    public String getEntry() {
-        return entry;
+    public String getEntryText() {
+        return entryText;
     }
 
     public Date getDate() {

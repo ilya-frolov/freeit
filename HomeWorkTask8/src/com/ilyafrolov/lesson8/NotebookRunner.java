@@ -7,35 +7,47 @@ import static com.ilyafrolov.lesson8.EntryType.*;
 public class NotebookRunner {
     public static void main(String[] args) throws ParseException {
         Notebook notebook = new Notebook(5);
-        System.out.println(notebook);
+        notebook.printNotebook();
 
-        notebook.addEntry("Buy clothes", PURCHASES);
-        System.out.println(notebook);
+        Entry entry = new Entry("Buy clothes", PURCHASES);
 
-        notebook.addEntry("Find job", TODO);
-        System.out.println(notebook);
+        notebook.addEntry(entry);
+        notebook.printNotebook();
 
-        notebook.addEntry("Call to mother", CALLS);
-        System.out.println(notebook);
+        Entry entry2 = new Entry("Find job", TODO);
 
-        notebook.addEntry("Birthday of Misha", BIRTHDAYS);
-        System.out.println(notebook);
+        notebook.addEntry(entry2);
+        notebook.printNotebook();
 
-        notebook.addEntry("Call to wife", CALLS);
-        System.out.println(notebook);
+        Entry entry3 = new Entry("Call to mother", CALLS);
+
+        notebook.addEntry(entry3);
+        notebook.printNotebook();
+
+        Entry entry4 = new Entry("Birthday of Misha", BIRTHDAYS);
+
+        notebook.addEntry(entry4);
+        notebook.printNotebook();
+
+        Entry entry5 = new Entry("Call to wife", CALLS);
+
+        notebook.addEntry(entry5);
+        notebook.printNotebook();
 
         //error due to private modifier in the class Notebook
-//        notebook.reWriteEntry(3, "Hi");
+        Entry entry6 = new Entry("Hi", TODO);
+//        notebook.reWriteEntry(3, entry6);
 
 
         //error due to private modifier in the class Notebook
-//        notebook.reWriteEntry(1, "Yo");
+        Entry entry7 = new Entry("Yo", TODO);
+//        notebook.reWriteEntry(1, entry7);
 
         //error due to private modifier in the class Notebook
 //        notebook.entries[3] = "buy";
 
         notebook.findTask(CALLS);
 
-        notebook.getEntriesInTimeInterval("11", "08", "2022", "12", "08", "2022");
+        notebook.getEntriesInTimeInterval("12.08.2022", "13.08.2022");
     }
 }

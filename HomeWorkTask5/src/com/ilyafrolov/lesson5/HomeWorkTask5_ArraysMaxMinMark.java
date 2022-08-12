@@ -38,8 +38,21 @@ public class HomeWorkTask5_ArraysMaxMinMark {
             }
         }
 
-        System.out.println("\n\nThe maximum mark is: " + marksArr[max] + " and its index(es) is (are): " + max);
-        System.out.println("The minimum mark is: " + marksArr[min] + " and its index(es) is (are): " + min);
+        //Step 3: Verification of the indexes of maximum and minimum marks in the array
+        String max2 = "";
+        String min2 = "";
+
+        for (int i = 0; i < marksArr.length; i++) {
+            if (marksArr[i] == marksArr[max]) {
+                max2 = max2 + i + " ";
+            }
+            if (marksArr[i] == marksArr[min]) {
+                min2 = min2 + i + " ";
+            }
+        }
+
+        System.out.println("\n\nThe maximum mark is: " + marksArr[max] + " and its index(es) is (are): " + max2);
+        System.out.println("The minimum mark is: " + marksArr[min] + " and its index(es) is (are): " + min2);
         System.out.println("\nThe program is completed successfully.");
     }
 }

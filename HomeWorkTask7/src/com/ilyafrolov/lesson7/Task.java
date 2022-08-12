@@ -5,10 +5,8 @@ import java.util.Date;
 
 public class Task {
 
-    public String task;
-    public Date curDate;
-
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyy HH:mm:ss");
+    private String task;
+    private Date curDate;
 
     public Task(String newTask) {
         this.task = newTask;
@@ -16,6 +14,7 @@ public class Task {
     }
 
     public String toString() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyy HH:mm:ss");
         return task + " (" + dateFormat.format(curDate) + ")";
     }
 

@@ -16,25 +16,24 @@ public class Notebook {
        в качестве аргумента слово
      */
 
-    public Task[] tasks;
-    public int counter;
+    private Task[] tasks;
+    private int counter;
 
     public Notebook(int numberOfTasks) {
         tasks = new Task[numberOfTasks];
     }
 
-    public String toString() {
+    public void printNotebook() {
         System.out.println("Existing tasks: ");
         for (int i = 0; i < tasks.length; i++) {
             System.out.println("" + (i + 1) + ". " + tasks[i]);
         }
-        return "";
-    }
+     }
 
-    public void addTask(String newTask) {
+    public void addTask(Task task) {
         for (int i = 0; i < tasks.length; i++) {
             if (tasks[i] == null) {
-                tasks[i] = new Task(newTask);
+                tasks[i] = task;
                 counter++;
                 break;
             } else {
@@ -48,9 +47,13 @@ public class Notebook {
 
     //1
     public void freqVocab(int indexOfTask) {
+        if (indexOfTask > tasks.length - 1) {
+            System.out.println("Entered index is out of bounds. Please, choose another one.");
+            return;
+        }
         //Step 1: Creation of array with words from a task and counting their number
         int counter2 = 0;
-        String[] words = tasks[indexOfTask].getTask().split("\\W+");
+        String[] words = tasks[indexOfTask - 1].getTask().split("\\W+");
         int[] numberOfRepeats = new int[words.length];
         for (int i = 0; i < words.length; i++) {
             if (words[i] != null) {
@@ -78,8 +81,8 @@ public class Notebook {
         }
     }
 
-    public void reWriteTask(int numberOfTask, String newTask) {
-        tasks[numberOfTask - 1] = new Task(newTask);
+    public void reWriteTask(int numberOfTask, Task task) {
+        tasks[numberOfTask - 1] = task;
     }
 
     //2.

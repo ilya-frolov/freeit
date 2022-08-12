@@ -40,19 +40,16 @@ public class HomeWorkTask5_ArraysSumNumbersBetweenMinMax {
 
         //Step 3: Calculation of the sum of the numbers between first min and max integers
         int sum = 0;
-        if (max > min) {
-            for (int i = 1; i < arr.length; i++) {
-                if (i > min && i < max) {
-                    sum = sum + arr[i];
-                }
-            }
-        }
+        int startValue = min;
+        int endValue = max;
+
         if (max < min) {
-            for (int i = 1; i < arr.length; i++) {
-                if (i < min && i > max) {
-                    sum = sum + arr[i];
-                }
-            }
+            startValue = max;
+            endValue = min;
+        }
+
+        for (int i = startValue + 1; i < endValue; i++) {
+            sum += arr[i];
         }
         System.out.println("\n\nThe sum of numbers between the first maximum integer " + arr[max] + " and the first minimum integer " + arr[min] + " is: " + sum);
         System.out.println("\nThe program is completed successfully.");

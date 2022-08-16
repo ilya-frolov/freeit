@@ -5,7 +5,7 @@ public class LibraryRunner {
 
         Library lib = new Library();
 
-        Book book1 = new Book("Geopolitics", 50);
+        Book book1 = new Book("Geopolitics", Genre.POLITICS);
         lib.addBook(book1);
 
         try {
@@ -14,7 +14,7 @@ public class LibraryRunner {
             Thread.currentThread().interrupt();
         }
 
-        Book book2 = new Book("History", 200);
+        Book book2 = new Book("History", Genre.HISTORY);
         lib.addBook(book2);
 
         try {
@@ -23,7 +23,7 @@ public class LibraryRunner {
             Thread.currentThread().interrupt();
         }
 
-        Book book3 = new Book("Maths", 9);
+        Book book3 = new Book("Maths", Genre.STUDY);
         lib.addBook(book3);
 
         try {
@@ -32,7 +32,7 @@ public class LibraryRunner {
             Thread.currentThread().interrupt();
         }
 
-        Book book4 = new Book("Applied Sciences", 500);
+        Book book4 = new Book("Applied Sciences", Genre.SCIENCE_FICTION);
         lib.addBook(book4);
 
         System.out.println("List of books:");
@@ -43,27 +43,35 @@ public class LibraryRunner {
         System.out.println(lib);
         System.out.println("*********************************");
 
-        System.out.println("\nAttempt to add the existing in Library book:");
-        Book book5 = new Book("Geopolitics", 50);
+        System.out.println("\nAdding the book with the same title:");
+        try {
+            Thread.sleep(3 * 1000);
+        } catch (InterruptedException ie) {
+            Thread.currentThread().interrupt();
+        }
+
+        Book book5 = new Book("Geopolitics", Genre.POLITICS);
         lib.addBook(book5);
         lib.printListOfBooks();
         System.out.println("*********************************");
 
-        System.out.println("\nSorted by title list of books:");
+        System.out.println("\nSorted by title (ascending) list of books:");
         lib.sortByTitle();
-        lib.printListOfBooks();
         System.out.println("*********************************");
 
-        System.out.println("\nDelete book by id:");
-        lib.deleteBook(200);
-        lib.printListOfBooks();
+        System.out.println("\nSorted by title (descending) list of books:");
+        lib.sortByTitleReverse();
         System.out.println("*********************************");
 
         System.out.println("\nSort book list by date:");
         lib.sortByDate();
-        lib.printListOfBooks();
         System.out.println("*********************************");
 
+
+        System.out.println("\nDelete book by id:");
+        lib.deleteBook(11);
+        lib.printListOfBooks();
+        System.out.println("*********************************");
 
         System.out.println("\nEdit book by id:");
         lib.editBook(9, "Roma says: YoYoYo");

@@ -1,22 +1,19 @@
 package com.ilyafrolov.lesson20;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.Objects;
-import java.util.Random;
 
-public class Book implements Comparable<Book> {
+public class Book {
 
     private int id;
     private String title;
-    private String genre;
+    private Genre genre;
     private Date date;
 
-    public Book(String title, int id) {
-//        Random random = new Random();
-//        id = random.nextInt(999) + 1;
-        this.id = id;
+    public Book(String title, Genre genre) {
         this.title = title;
-        this.genre = new Genre().getGenre(id);
+        this.genre = genre;
         date = new Date();
     }
 
@@ -24,6 +21,9 @@ public class Book implements Comparable<Book> {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getTitle() {
         return title;
     }
@@ -37,10 +37,9 @@ public class Book implements Comparable<Book> {
     }
 
     public String toString() {
-        return "Title: " + title + ", id: " + id + ", genre: " + genre + " |||";
+        return "Title: " + title + ", id: " + id + ", genre: " + genre;
     }
 
-    // For case of HashSet Library
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -62,12 +61,24 @@ public class Book implements Comparable<Book> {
         return hash;
     }
 
-    // For case of List Library
-    @Override
-    public int compareTo(Book book) {
-        if (getTitle() == null || book.getTitle() == null) {
-            return 0;
+    public static class sortByTitle implements Comparator<String> {
+        @Override
+        public int compare(String str1, String str2) {
+            return str1.compareTo(str2);
         }
-        return getTitle().compareTo(book.getTitle());
+    }
+
+    public static class sortByTitleReverse implements Comparator<String> {
+        @Override
+        public int compare(String str1, String str2) {
+            return str2.compareTo(str1);
+        }
+    }
+
+    public static class sortByDate implements Comparator<Book> {
+        @Override
+        public int compare(Book book1, Book book2) {
+            return book1.getDate().compareTo(book2.getDate());
+        }
     }
 }

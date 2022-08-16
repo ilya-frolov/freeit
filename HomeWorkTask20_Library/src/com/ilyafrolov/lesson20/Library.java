@@ -4,65 +4,87 @@ import java.util.*;
 
 public class Library {
 
-    List<Book> books;
+    private Map<String, ArrayList<Book>> books;
+    private ArrayList<Book> list;
+    private ArrayList<String> titleList;
 
     public Library() {
-        books = new LinkedList();
+        books = new HashMap();
     }
 
     public void addBook(Book book) {
-        boolean isUnique = true;
-        if (books.size() == 0) {
-            books.add(book);
+        book.setId(books.size() + 7);
+        if (books.containsKey(book.getTitle())) {
+            books.get(book.getTitle()).add(book);
         } else {
-            for (int i = 0; i < books.size(); i++) {
-                if (books.get(i).equals(book)) {
-                    isUnique = false;
-                }
-            }
-            if (isUnique) {
-                books.add(book);
-            }
+            list = new ArrayList();
+            list.add(book);
+            books.put(book.getTitle(), list);
         }
     }
 
     public void printListOfBooks() {
-        Iterator iterator = books.iterator();
+        Iterator<ArrayList<Book>> iterator = books.values().iterator();
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
     }
 
     public String toString() {
-        return books.toString();
-    }
-
-    public void sortByTitle() {
-        Collections.sort(books);
+        return books.values().toString();
     }
 
     public void deleteBook(int id) {
-        for (int i = 0; i < books.size(); i++) {
-            if (books.get(i).getId() == id) {
-                books.remove(books.get(i));
+        titleList = new ArrayList(books.keySet());
+        for (int i = 0; i < titleList.size(); i++) {
+            for (int j = 0; j < books.get(titleList.get(i)).size(); j++) {
+                if (books.get(titleList.get(i)).get(j).getId() == id) {
+                    books.get(titleList.get(i)).remove(j);
+                    break;
+                }
             }
         }
     }
 
     public void editBook(int id, String newTitle) {
-        for (int i = 0; i < books.size(); i++) {
-            if (books.get(i).getId() == id) {
-                books.get(i).setTitle(newTitle);
+        titleList = new ArrayList(books.keySet());
+        for (int i = 0; i < titleList.size(); i++) {
+            for (int j = 0; j < books.get(titleList.get(i)).size(); j++) {
+                if (books.get(titleList.get(i)).get(j).getId() == id) {
+                    books.get(titleList.get(i)).get(j).setTitle(newTitle);
+                    break;
+                }
             }
         }
     }
 
+    public void sortByTitle() {
+        titleList = new ArrayList(books.keySet());
+        Collections.sort(titleList, new Book.sortByTitle());
+        for (int i = 0; i < titleList.size(); i++) {
+            System.out.println(books.get(titleList.get(i)));
+        }
+    }
+
+    public void sortByTitleReverse() {
+        titleList = new ArrayList(books.keySet());
+        Collections.sort(titleList, new Book.sortByTitleReverse());
+        for (int i = 0; i < titleList.size(); i++) {
+            System.out.println(books.get(titleList.get(i)));
+        }
+    }
+
     public void sortByDate() {
-        Collections.sort(books, new Comparator<Book>() {
-            @Override
-            public int compare(Book book1, Book book2) {
-                return book2.getDate().compareTo(book1.getDate());
+        titleList = new ArrayList(books.keySet());
+        list = new ArrayList();
+        for (int i = 0; i < titleList.size(); i++) {
+            for (int j = 0; j < books.get(titleList.get(i)).size(); j++) {
+                list.add(books.get(titleList.get(i)).get(j));
             }
-        });
+        }
+        Collections.sort(list, new Book.sortByDate());
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i));
+        }
     }
 }

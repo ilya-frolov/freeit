@@ -55,11 +55,7 @@ public class LibraryRunner {
         lib.printListOfBooks();
         System.out.println("*********************************");
 
-        System.out.println("\nSorted by title (ascending) list of books:");
-        lib.sortByTitle();
-        System.out.println("*********************************");
-
-        System.out.println("\nSorted by title (descending) list of books:");
+        System.out.println("\nSort book list by title (descending):");
         lib.sortByTitleReverse();
         System.out.println("*********************************");
 
@@ -69,12 +65,12 @@ public class LibraryRunner {
 
 
         System.out.println("\nDelete book by id:");
-        lib.deleteBook(11);
+        lib.deleteBook(5);
         lib.printListOfBooks();
         System.out.println("*********************************");
 
         System.out.println("\nEdit book by id:");
-        lib.editBook(9, "Roma says: YoYoYo");
+        lib.editBook(3, "Roma says: YoYoYo");
         lib.printListOfBooks();
         System.out.println("*********************************");
     }

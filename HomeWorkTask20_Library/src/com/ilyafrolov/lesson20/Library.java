@@ -5,22 +5,25 @@ import java.util.*;
 public class Library {
 
     private Map<String, ArrayList<Book>> books;
-    private ArrayList<Book> list;
-    private ArrayList<String> titleList;
+    private static int librarySize;
 
     public Library() {
-        books = new HashMap();
+        books = new TreeMap();
     }
 
     public void addBook(Book book) {
-        book.setId(books.size() + 7);
         if (books.containsKey(book.getTitle())) {
             books.get(book.getTitle()).add(book);
         } else {
-            list = new ArrayList();
+            ArrayList<Book> list = new ArrayList();
             list.add(book);
             books.put(book.getTitle(), list);
         }
+        librarySize++;
+    }
+
+    public static int getLibrarySize() {
+        return librarySize;
     }
 
     public void printListOfBooks() {
@@ -35,56 +38,50 @@ public class Library {
     }
 
     public void deleteBook(int id) {
-        titleList = new ArrayList(books.keySet());
-        for (int i = 0; i < titleList.size(); i++) {
-            for (int j = 0; j < books.get(titleList.get(i)).size(); j++) {
-                if (books.get(titleList.get(i)).get(j).getId() == id) {
-                    books.get(titleList.get(i)).remove(j);
-                    break;
+        for (ArrayList<Book> list : books.values()) {
+            for (int i = 0; i < list.size(); i++) {
+                if (id == list.get(i).getId()) {
+                    list.remove(i);
                 }
             }
         }
     }
 
     public void editBook(int id, String newTitle) {
-        titleList = new ArrayList(books.keySet());
-        for (int i = 0; i < titleList.size(); i++) {
-            for (int j = 0; j < books.get(titleList.get(i)).size(); j++) {
-                if (books.get(titleList.get(i)).get(j).getId() == id) {
-                    books.get(titleList.get(i)).get(j).setTitle(newTitle);
-                    break;
+        for (ArrayList<Book> list : books.values()) {
+            for (int i = 0; i < list.size(); i++) {
+                if (id == list.get(i).getId()) {
+                    list.get(i).setTitle(newTitle);
                 }
             }
         }
     }
 
-    public void sortByTitle() {
-        titleList = new ArrayList(books.keySet());
-        Collections.sort(titleList, new Book.sortByTitle());
-        for (int i = 0; i < titleList.size(); i++) {
-            System.out.println(books.get(titleList.get(i)));
-        }
-    }
-
     public void sortByTitleReverse() {
-        titleList = new ArrayList(books.keySet());
-        Collections.sort(titleList, new Book.sortByTitleReverse());
-        for (int i = 0; i < titleList.size(); i++) {
-            System.out.println(books.get(titleList.get(i)));
+        Map<String, ArrayList<Book>> booksReverseSorted = new TreeMap(Comparator.reverseOrder());
+        booksReverseSorted.putAll(books);
+        Iterator<ArrayList<Book>> iterator = booksReverseSorted.values().iterator();
+        while (iterator.hasNext()) {
+            System.out.println(iterator.next());
         }
     }
 
     public void sortByDate() {
-        titleList = new ArrayList(books.keySet());
-        list = new ArrayList();
-        for (int i = 0; i < titleList.size(); i++) {
-            for (int j = 0; j < books.get(titleList.get(i)).size(); j++) {
-                list.add(books.get(titleList.get(i)).get(j));
-            }
-        }
-        Collections.sort(list, new Book.sortByDate());
+        ArrayList<ArrayList<Book>> list = new ArrayList<>(books.values());
+        ArrayList<Book> booksList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i));
+            booksList.addAll(list.get(i));
+        }
+        booksList.sort(new SortByDate());
+        for (Book book : booksList) {
+            System.out.println(book);
+        }
+    }
+
+    public static class SortByDate implements Comparator<Book> {
+        @Override
+        public int compare(Book book1, Book book2) {
+            return book1.getDate().compareTo(book2.getDate());
         }
     }
 }
